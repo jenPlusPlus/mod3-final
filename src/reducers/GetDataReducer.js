@@ -1,4 +1,4 @@
-const getHouseData = (state = [], action) => {
+const houseData = (state = [], action) => {
   switch (action.type) {
   case "GET_HOUSE_DATA":
     return action.houseData;
@@ -8,4 +8,4 @@ const getHouseData = (state = [], action) => {
 };
 
 
-export default getHouseData;
+export default houseData;
