@@ -25,11 +25,12 @@ class Card extends Component {
   }
 
   displayMembers() {
-    let mappedMembers = this.state.completeHouse.swornMembers.map((member, index) => {
-      return (
-        <li key={index}>{member.name}</li>
-      );
-    });
+    const mappedMembers =
+      this.state.completeHouse.swornMembers.map((member, index) => {
+        return (
+          <li key={index}>{member.name}</li>
+        );
+      });
     return mappedMembers;
   }
 
@@ -50,7 +51,8 @@ class Card extends Component {
     return Promise.all(allMembers).then(members => members);
   }
 
-  // the next three functions could be refactored into one, taking in the array as an arg.
+  // the next three functions could be refactored into one,
+  // taking in the array as an arg.
   getSeats() {
     let mappedSeats;
     if (this.props.house.seats.length > 0) {

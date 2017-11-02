@@ -9,7 +9,8 @@ import rootReducer from './../../reducers/root-reducer';
 
 
 describe('App snapshot', () => {
- // getting error:  Enzyme Internal Error: unknown composite type undefined
+  // getting error:
+  // Enzyme Internal Error: unknown composite type undefined
   it.skip('should always match the snapshot', () => {
     const store = createStore(rootReducer, applyMiddleware(thunk));
     const wrapper = shallow(
