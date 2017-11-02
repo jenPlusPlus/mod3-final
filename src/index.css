@@ -8,3 +8,16 @@ body {
 ul {
   list-style: none;
 }
+
+
+.card {
+  border: 2px black solid;
+  margin: 5px;
+  width: 30%;
+}
+
+.card-catalog {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
