@@ -4,7 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
 import { fakeAction } from '../../actions';
-import CardCatalogContainer from './../../components/CardCatalog';
+import CardCatalogContainer from './../../containers/CardCatalogContainer';
 
 class App extends Component {
 
