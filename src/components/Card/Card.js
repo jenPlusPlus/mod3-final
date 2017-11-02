@@ -5,7 +5,8 @@ class Card extends Component {
   constructor() {
     super();
     this.state = {
-      completeHouse: []
+      completeHouse: [],
+      showMembers: false
     };
   }
 
@@ -23,8 +24,16 @@ class Card extends Component {
     });
   }
 
-  getSwornMembers = (membersURLs) => {
-    // console.log('membersURLs: ', membersURLs);
+  displayMembers() {
+    let mappedMembers = this.state.completeHouse.swornMembers.map((member, index) => {
+      return (
+        <li key={index}>{member.name}</li>
+      );
+    });
+    return mappedMembers;
+  }
+
+  getSwornMembers(membersURLs) {
     const allMembers = membersURLs.map( url => {
       return fetch('http://localhost:3001/api/v1/character', {
         method: 'POST',
@@ -35,13 +44,11 @@ class Card extends Component {
       })
         .then(response => response.json())
         .then(parsedResponse => {
-          // console.log('members: ', parsedResponse.url);
           return parsedResponse;
         } );
     });
-    // console.log('allMembers: ', allMembers);
     return Promise.all(allMembers).then(members => members);
-  };
+  }
 
   // the next three functions could be refactored into one, taking in the array as an arg.
   getSeats() {
@@ -101,6 +108,13 @@ class Card extends Component {
     return words;
   }
 
+  updateState(event) {
+    event.preventDefault();
+    this.setState({
+      showMembers: !this.state.showMembers
+    });
+  }
+
   render() {
     const { house } = this.props;
     return (
@@ -118,7 +132,10 @@ class Card extends Component {
           {this.getWeapons()}
         </ul>
         <p>Words: {this.getWords()}</p>
-        <ul>Sworn Members:</ul>
+        <div onClick={(event) => this.updateState(event)}>Sworn Members:
+          {this.state.showMembers &&
+            <ul>{this.displayMembers()}</ul>}
+        </div>
 
       </div>);
   }
