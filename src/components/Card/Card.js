@@ -6,7 +6,7 @@ class Card extends Component {
     super();
   }
 
-  // the next three functions could be refactored into one
+  // the next three functions could be refactored into one, taking in the array as an arg.
   getSeats() {
     let mappedSeats;
     if (this.props.house.seats.length > 0) {

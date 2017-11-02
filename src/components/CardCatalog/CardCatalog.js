@@ -1,33 +1,42 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Card from './../Card/Card';
+import wolf from './../../wolf.gif';
 
 class CardCatalog extends Component {
   constructor() {
     super();
   }
 
-  componentDidMount() {
-    this.props.getHouseData();
+  async componentDidMount() {
+    await this.props.getHouseData();
   }
 
-
-  render() {
+  displayHouses() {
     const mapped = this.props.houseData.map( (house, index) => {
       return (<Card
         house={house}
         key={index + Date.now()}/>
       ) ;
     });
-    return (
-      <div className='card-catalog'>{mapped}</div>
-    );
+    if (mapped.length > 0) {
+      return (
+        <div className='card-catalog'>{mapped}</div>
+      );
+    } else {
+      return ( <img id='wolf' src={wolf}/>);
+    }
+  }
+
+
+  render() {
+    return <div className='card-catalog'>{this.displayHouses()}</div>;
   }
 }
 
 CardCatalog.propTypes = {
   getHouseData: PropTypes.func,
-  houseData: PropTypes.object
+  houseData: PropTypes.array
 };
 
 export default CardCatalog;
