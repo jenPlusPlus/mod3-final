@@ -12,7 +12,7 @@ export const getHouseDataFetch = () => {
     fetch('http://localhost:3001/api/v1/houses')
       .then(response => response.json())
       .then(parsedResponse => {
-        console.log(parsedResponse);
+        // console.log(parsedResponse);
         return (dispatch(getHouseData(parsedResponse)));
       });
   };

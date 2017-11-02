@@ -4,7 +4,44 @@ import PropTypes from 'prop-types';
 class Card extends Component {
   constructor() {
     super();
+    this.state = {
+      completeHouse: []
+    };
   }
+
+  async componentDidMount() {
+    let completedHouse = {};
+    const members = this.getSwornMembers(this.props.house.swornMembers);
+
+    await members.then(data => {
+      Object.assign(completedHouse, this.props.house, {swornMembers: data});
+      return data;
+    });
+
+    this.setState({
+      completeHouse: completedHouse
+    });
+  }
+
+  getSwornMembers = (membersURLs) => {
+    // console.log('membersURLs: ', membersURLs);
+    const allMembers = membersURLs.map( url => {
+      return fetch('http://localhost:3001/api/v1/character', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ url: url })
+      })
+        .then(response => response.json())
+        .then(parsedResponse => {
+          // console.log('members: ', parsedResponse.url);
+          return parsedResponse;
+        } );
+    });
+    // console.log('allMembers: ', allMembers);
+    return Promise.all(allMembers).then(members => members);
+  };
 
   // the next three functions could be refactored into one, taking in the array as an arg.
   getSeats() {
@@ -81,12 +118,15 @@ class Card extends Component {
           {this.getWeapons()}
         </ul>
         <p>Words: {this.getWords()}</p>
+        <ul>Sworn Members:</ul>
+
       </div>);
   }
 }
 
 Card.propTypes = {
-  house: PropTypes.object
+  house: PropTypes.object,
+  getSwornMembers: PropTypes.func
 };
 
 export default Card;
