@@ -16,7 +16,8 @@ class CardCatalog extends Component {
     const mapped = this.props.houseData.map( (house, index) => {
       return (<Card
         house={house}
-        key={index + Date.now()}/>
+        key={index + Date.now()}
+        getSwornMembers={this.props.getSwornMembers}/>
       ) ;
     });
     if (mapped.length > 0) {
@@ -36,7 +37,8 @@ class CardCatalog extends Component {
 
 CardCatalog.propTypes = {
   getHouseData: PropTypes.func,
-  houseData: PropTypes.array
+  houseData: PropTypes.array,
+  getSwornMembers: PropTypes.func
 };
 
 export default CardCatalog;
