@@ -1,6 +1,6 @@
-import { connect } from 'react-redux'
-import { getHouseDataFetch } from './../actions/index.js'
-import CardCatalog from './../components/CardCatalog/CardCatalog'
+import { connect } from 'react-redux';
+import { getHouseDataFetch } from './../actions/index.js';
+import CardCatalog from './../components/CardCatalog/CardCatalog';
 
 const mapStateToProps = (store) => ({
   houseData: store.houseData

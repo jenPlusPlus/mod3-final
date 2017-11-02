@@ -8,8 +8,9 @@ describe('getData reducer tests', () => {
     expect(houseData(undefined, {})).toEqual(expectation);
   });
 
-// this test is failing because i'm getting an object back;
-// i don't know why i'm getting an object back when houseData is an array with one object in it
+  // this test is failing because i'm getting an object back;
+  // i don't know why i'm getting an object back
+  // when houseData is an array with one object in it
   it('should populate state with house data', () => {
     const action = {
       type: 'GET_HOUSE_DATA',
@@ -19,7 +20,10 @@ describe('getData reducer tests', () => {
           founded: '',
           seats: ["Heart's Home"],
           titles: ["Lord of Heart's Home", "King of the Fingers (historical)"],
-          coatOfArms: 'Three black ravens in flight, holding three red hearts, on a white field(Argent, three ravens volant sable, each clutching in their claws a heart gules)',
+          coatOfArms: 'Three black ravens in flight, ' +
+          'holding three red hearts, on a white field' +
+          '(Argent, three ravens volant sable, ' +
+          'each clutching in their claws a heart gules)',
           ancestralWeapons: ["Lady Forlorn"],
           words: ''
         }

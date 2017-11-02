@@ -1,5 +1,5 @@
 import configureStore from 'redux-mock-store';
-import { shallow, mount, configure } from 'enzyme';
+import { shallow, configure } from 'enzyme';
 // Enzyme Internal Error: unknown composite type undefined
 // import CardCatalogContainer from './CardCatalogContainer';
 // TypeError: Cannot read property 'prototype' of undefined
@@ -9,7 +9,7 @@ import Adapter from 'enzyme-adapter-react-15';
 import fetchMock from 'fetch-mock';
 import * as actions from './../actions/index';
 
-configure({ adapter: new Adapter() })
+configure({ adapter: new Adapter() });
 
 describe('CardCatalogContainer tests', () => {
 
@@ -41,8 +41,7 @@ describe('CardCatalogContainer tests', () => {
     const wrapper = shallow(<CardCatalogContainer
       store={store}
       houseData={[]}
-      getHouseData={mockFunc}
-                            />);
+      getHouseData={mockFunc}/>);
 
     expect(wrapper.instance().props.houseData).toEqual({ houseData: [] });
   });
